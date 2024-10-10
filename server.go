@@ -3,6 +3,7 @@ package main
 import (
     "net/http"
     "os"
+    "time"
 )
 
 func main() {
@@ -12,9 +13,11 @@ func main() {
     }
 
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        time.Sleep(5 * time.Second)
         if r.Method == http.MethodGet {
             w.WriteHeader(http.StatusOK) // Respond with 200 OK
         }
+
     })
 	
 	http.HandleFunc("/healthcheck", func(w http.ResponseWriter, r *http.Request) {
